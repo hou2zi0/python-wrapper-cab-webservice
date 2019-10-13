@@ -13,7 +13,9 @@ For more information about the CAB-webservice please see:
 Download the `CabWebserviceWrapper.py` file. Put the file into the same folder where your other Python files or jupyter notebooks are located.
 
 ```Python
+# Import the class
 from CabWebserviceWrapper import CabWrapper
+# Instantiate the class
 CAB = CabWrapper()
 # Set the return format: json, text, csv, raw, ltwxml, dataframe
 CAB.format = 'json'
@@ -180,4 +182,52 @@ The output and the return value should be as follows:
       }
    ]
 ]
+```
+
+You may as well let the class return a dataframe:
+
+```Python
+CAB = CabWrapper()
+# Set the return format: json, text, csv, raw, ltwxml, dataframe
+CAB.format = 'dataframe'
+# Set the outputs you want (word, lemma, a/o pos), just concatenate them with pluses
+CAB.output = 'word+lemma+pos'
+# Query a text
+CAB.getText('Jn jm war das Leben / vnd das Leben war das Liecht der Menschen / vnd das Liecht scheinet in der Finsternis / vnd die Finsternis habens nicht begriffen.')
+```
+
+The returned dataframe:
+
+```text
+           word       lemma     pos
+0           In          in    APPR
+1          ihm          er    PPER
+2          war        sein   VAFIN
+3          das           d     ART
+4        Leben       Leben      NN
+5            /           /      $(
+6          und         und     KON
+7          das           d     ART
+8        Leben       Leben      NN
+9          war        sein   VAFIN
+10         das           d     ART
+11       Licht       Licht      NN
+12         der           d     ART
+13    Menschen      Mensch      NN
+14           /           /      $(
+15         und         und     KON
+16         das           d     ART
+17       Licht       Licht      NN
+18    scheinet    scheinen   VVFIN
+19          in          in    APPR
+20         der           d     ART
+21  Finsternis  Finsternis      NN
+22           /           /      $(
+23         und         und     KON
+24         die           d     ART
+25  Finsternis  Finsternis      NN
+26      habens      Habens      NE
+27       nicht       nicht  PTKNEG
+28   begriffen   begreifen    VVPP
+29           .           .      $.
 ```

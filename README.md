@@ -36,6 +36,8 @@ CAB.output = 'word+lemma+pos'
 CAB.getText('Jn jm war das Leben / vnd das Leben war das Liecht der Menschen / vnd das Liecht scheinet in der Finsternis / vnd die Finsternis habens nicht begriffen.')
 ```
 
+The example text is taken from the English Wikipedia [Early New High German](https://en.wikipedia.org/wiki/Early_New_High_German#The_Gospel_of_John,_1:1%E2%80%935) (Gospel of John, 1:1–5).
+
 The output and the return value should be as follows. Apart from `json` and `dataframe` the class may as well return other formats provided by the [CAB-webservice](https://kaskade.dwds.de/demo/cab/) e.g. `csv` (tabs), `text` (with vertical attributes), `raw` (just the normalized text), `ltwxml` (linguistic xml), `list` (just the normalized tokens):
 
 ### JSON

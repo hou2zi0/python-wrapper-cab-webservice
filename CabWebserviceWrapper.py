@@ -50,7 +50,7 @@ class CabWrapper:
     # Setter
     @format.setter
     def format(self, format):
-        if(format in ['json','text','csv', 'raw','ltwxml', 'dataframe']):
+        if(format in ['json','text','csv', 'raw','ltwxml', 'dataframe', 'list']):
             self.__format = format
         else:
             print('Format not found. Format set to "json".')
@@ -85,7 +85,7 @@ class CabWrapper:
                 'q': i
             }
 
-            if(self.format == 'dataframe'):
+            if(self.format in ['dataframe', 'list']):
                 query_parameters['fmt'] = 'json'
 
             r = requests.get(self.baseurl, params=query_parameters)
@@ -97,12 +97,12 @@ class CabWrapper:
                 output_text = output_text + r.text
             elif(self.format in ['ltwxml']):
                 output_text = output_text + "\n".join(r.text.split('\n')[2:-2])
-            elif(self.format in ['json', 'dataframe']):
+            elif(self.format in ['json', 'dataframe', 'list']):
                 json = r.json()
                 for sentence in json['body']:
                     sent = []
                     for token in sentence['tokens']:
-                        if(self.output != 'raw'):
+                        if(self.format != 'list'):
                             word = {}
                             if('word' in self.output):
                                 word['word'] = token['moot']['word']
@@ -139,6 +139,8 @@ class CabWrapper:
             print(df)
             return df
         else:
+            if(len(output) == 1):
+                output = output[0]
             print(output)
             return output
 

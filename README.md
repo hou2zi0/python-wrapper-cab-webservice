@@ -7,14 +7,15 @@
   - [CSV (Tabs)](#csv-tabs)
   - [Text (with Annotations)](#text-with-annotations)
   - [Raw Text](#raw-text)
+  - [ltwxml](#ltwxml)
   - [List](#list)
 
-Small Python wrapper class for the CAB-webservice.
+Small Python wrapper class for the [CAB-webservice](https://kaskade.dwds.de/demo/cab/).
 
 This class provides a simple interface to interact with B. Jurish’s [CAB-webservice](https://kaskade.dwds.de/demo/cab/) from within Python.
 
 ## CAB-webservice
-The CAB-webservice was created by B. Jurish. For more information about the CAB-webservice please see:
+The [CAB-webservice](https://kaskade.dwds.de/demo/cab/) was created by B. Jurish. For more information about the [CAB-webservice](https://kaskade.dwds.de/demo/cab/) please see:
 
 > Jurish, B. Finite-state Canonicalization Techniques for Historical German. PhD thesis, Universität Potsdam, 2012 (defended 2011). URN [urn:nbn:de:kobv:517-opus-55789.](https://nbn-resolving.org/resolver?identifier=urn%3Anbn%3Ade%3Akobv%3A517-opus-55789)
 
@@ -35,7 +36,7 @@ CAB.output = 'word+lemma+pos'
 CAB.getText('Jn jm war das Leben / vnd das Leben war das Liecht der Menschen / vnd das Liecht scheinet in der Finsternis / vnd die Finsternis habens nicht begriffen.')
 ```
 
-The output and the return value should be as follows. Apart from `json` and `DataFrame` the class may as well return other formats provided by the CAB-webservice e.g. `csv` (tabs), `text` (with vertical attributes), `raw` (just the normalized text), `list`:
+The output and the return value should be as follows. Apart from `json` and `dataframe` the class may as well return other formats provided by the [CAB-webservice](https://kaskade.dwds.de/demo/cab/) e.g. `csv` (tabs), `text` (with vertical attributes), `raw` (just the normalized text), `ltwxml` (linguistic xml), `list` (just the normalized tokens):
 
 ### JSON
 
@@ -563,6 +564,46 @@ begriffen
 
 ```text
 In ihm war das Leben / und das Leben war das Licht der Menschen / und das Licht scheinet in der Finsternis / und die Finsternis habens nicht begriffen .
+```
+
+### ltwxml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<text>
+ <s>
+	<w lemma="in" pos="APPR" norm="In">Jn</w>
+	<w lemma="er" pos="PPER" norm="ihm">jm</w>
+	<w lemma="sein" pos="VAFIN" norm="war">war</w>
+	<w lemma="d" pos="ART" norm="das">das</w>
+	<w lemma="Leben" pos="NN" norm="Leben">Leben</w>
+	<w lemma="/" pos="$(" norm="/">/</w>
+	<w lemma="und" pos="KON" norm="und">vnd</w>
+	<w lemma="d" pos="ART" norm="das">das</w>
+	<w lemma="Leben" pos="NN" norm="Leben">Leben</w>
+	<w lemma="sein" pos="VAFIN" norm="war">war</w>
+	<w lemma="d" pos="ART" norm="das">das</w>
+	<w lemma="Licht" pos="NN" norm="Licht">Liecht</w>
+	<w lemma="d" pos="ART" norm="der">der</w>
+	<w lemma="Mensch" pos="NN" norm="Menschen">Menschen</w>
+	<w lemma="/" pos="$(" norm="/">/</w>
+	<w lemma="und" pos="KON" norm="und">vnd</w>
+	<w lemma="d" pos="ART" norm="das">das</w>
+	<w lemma="Licht" pos="NN" norm="Licht">Liecht</w>
+	<w lemma="scheinen" pos="VVFIN" norm="scheinet">scheinet</w>
+	<w lemma="in" pos="APPR" norm="in">in</w>
+	<w lemma="d" pos="ART" norm="der">der</w>
+	<w lemma="Finsternis" pos="NN" norm="Finsternis">Finsternis</w>
+	<w lemma="/" pos="$(" norm="/">/</w>
+	<w lemma="und" pos="KON" norm="und">vnd</w>
+	<w lemma="d" pos="ART" norm="die">die</w>
+	<w lemma="Finsternis" pos="NN" norm="Finsternis">Finsternis</w>
+	<w lemma="Habens" pos="NE" norm="habens">habens</w>
+	<w lemma="nicht" pos="PTKNEG" norm="nicht">nicht</w>
+	<w lemma="begreifen" pos="VVPP" norm="begriffen">begriffen</w>
+	<w lemma="." pos="$." norm=".">.</w>
+ </s>
+</text>
 ```
 
 ### List

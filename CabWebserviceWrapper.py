@@ -96,7 +96,7 @@ class CabWrapper:
             if(self.format in ['text','csv','raw']):
                 output_text = output_text + r.text
             elif(self.format in ['ltwxml']):
-                output_text = output_text + "\n".join(r.text.split('\n')[2:-2])
+                output.append("\n".join(r.text.split('\n')[2:-2]))
             elif(self.format in ['json', 'dataframe', 'list']):
                 json = r.json()
                 for sentence in json['body']:
@@ -121,7 +121,7 @@ class CabWrapper:
             print(output_text)
             return output_text
         elif(self.format in ['ltwxml']):
-            output_xml = '<?xml version="1.0" encoding="UTF-8"?>\n<text>\n' + output_text + '\n</text>'
+            output_xml = '<?xml version="1.0" encoding="UTF-8"?>\n<text>\n' + "\n<br/>\n".join(output) + '\n</text>'
             print(output_xml)
             return output_xml
         elif(self.format in ['dataframe']):
